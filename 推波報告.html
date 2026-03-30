@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>推波選股報告</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+    background: #f0f2f5;
+    color: #333;
+  }
+  .header {
+    background: #1a1a2e;
+    color: white;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+  .header .meta { font-size: 13px; color: #aac; line-height: 1.8; text-align: right; }
+  .meta b { color: #fff; }
+  .legend {
+    background: #fff;
+    border-left: 4px solid #ff6600;
+    margin: 16px 20px 0;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #555;
+    border-radius: 0 6px 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .legend .badge {
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .warn {
+    margin: 10px 20px 0;
+    background: #fffbe6;
+    border: 1px solid #ffe58f;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #888;
+  }
+  .table-wrap {
+    margin: 14px 20px 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+  }
+  thead tr {
+    background: #2d2d2d;
+    color: white;
+  }
+  th {
+    padding: 12px 14px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  td {
+    padding: 11px 14px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+  }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fffaf5; }
+  .td-code { font-size: 15px; }
+  .td-name { font-weight: 600; white-space: nowrap; }
+  .td-score { font-size: 20px; font-weight: 700; white-space: nowrap; }
+  .td-stars { font-size: 16px; white-space: nowrap; }
+  .td-entry { color: #1a7f37; font-weight: 600; white-space: nowrap; }
+  .td-stop { color: #d93025; font-weight: 600; }
+  .td-profit { color: #1558d6; font-weight: 600; }
+  .td-reasons { text-align: left; font-size: 12px; color: #666; max-width: 340px; }
+  .chip-badge {
+    font-size: 11px;
+    background: #e8f4fd;
+    color: #0066cc;
+    border-radius: 10px;
+    padding: 1px 7px;
+    margin-left: 4px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+  .chip-reasons {
+    color: #0066cc;
+    font-size: 11px;
+    margin-top: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📈 推波選股報告</h1>
+  <div class="meta">
+    更新時間：<b>2026-03-30 15:04</b><br>
+    最新交易日：<b>20260327</b> &nbsp;｜&nbsp; 候選股：<b>20 支</b> &nbsp;｜&nbsp; 含籌碼分數
+  </div>
+</div>
+
+<div class="legend">
+  <span>四大推波形態（各 25 分，滿分 100）：</span>
+  <span class="badge">波動收斂</span>
+  <span class="badge">上升三角形</span>
+  <span class="badge">下降楔形翻紅</span>
+  <span class="badge">方向突破</span>
+  <span style="margin-left:12px;color:#888">★ 25分 ｜ ★★ 50分 ｜ ★★★ 75分 ｜ ★★★★ 100分</span>
+</div>
+
+<div class="warn">⚠️ 本報告由系統自動生成，僅供參考，不構成投資建議。股市有風險，投資前請自行評估。</div>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>代號</th>
+      <th>名稱</th>
+      <th>推波分數</th>
+      <th>評級</th>
+      <th>收盤價</th>
+      <th>量比</th>
+      <th>建議進場區間</th>
+      <th>停損價</th>
+      <th>停利價</th>
+      <th>符合形態</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+  <td class="td-code"><b>1582</b></td>
+  <td class="td-name">信錦</td>
+  <td class="td-score" style="color:#ff6600">68 <span class="chip-badge">+18籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>102.00</td>
+  <td>3.1x</td>
+  <td class="td-entry">100.98 ~ 104.04</td>
+  <td class="td-stop">86.60</td>
+  <td class="td-profit">117.30</td>
+  <td class="td-reasons">下降楔形翻紅(MA60上+MACD柱翻正)+25 | 方向突破(量比3.1x)+25<div class="chip-reasons">法人連買5天+8 | 外資連買5天+5 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1219</b></td>
+  <td class="td-name">福壽</td>
+  <td class="td-score" style="color:#ff6600">63 <span class="chip-badge">+13籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>13.90</td>
+  <td>0.7x</td>
+  <td class="td-entry">13.76 ~ 14.18</td>
+  <td class="td-stop">13.46</td>
+  <td class="td-profit">15.98</td>
+  <td class="td-reasons">波動收斂(4.5%<8%)+25 | 上升三角形(頂平底升)+25<div class="chip-reasons">法人連買3天+5 | 外資連買3天+3 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>2910</b></td>
+  <td class="td-name">統領</td>
+  <td class="td-score" style="color:#ff6600">63 <span class="chip-badge">+13籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>23.05</td>
+  <td>3.8x</td>
+  <td class="td-entry">22.82 ~ 23.51</td>
+  <td class="td-stop">21.27</td>
+  <td class="td-profit">26.51</td>
+  <td class="td-reasons">下降楔形翻紅(MA60上+MACD柱翻正)+25 | 方向突破(量比3.8x)+25<div class="chip-reasons">法人連買3天+5 | 外資連買3天+3 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>2897</b></td>
+  <td class="td-name">王道銀行</td>
+  <td class="td-score" style="color:#ff6600">63 <span class="chip-badge">+13籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>10.10</td>
+  <td>2.0x</td>
+  <td class="td-entry">10.00 ~ 10.30</td>
+  <td class="td-stop">9.76</td>
+  <td class="td-profit">11.61</td>
+  <td class="td-reasons">波動收斂(7.4%<8%)+25 | 方向突破(量比2.0x)+25<div class="chip-reasons">法人連買3天+5 | 外資連買3天+3 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>9928</b></td>
+  <td class="td-name">中視</td>
+  <td class="td-score" style="color:#ff6600">63 <span class="chip-badge">+13籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>17.60</td>
+  <td>0.5x</td>
+  <td class="td-entry">17.42 ~ 17.95</td>
+  <td class="td-stop">17.64</td>
+  <td class="td-profit">20.24</td>
+  <td class="td-reasons">波動收斂(4.9%<8%)+25 | 上升三角形(頂平底升)+25<div class="chip-reasons">法人連買6天+8 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>2912</b></td>
+  <td class="td-name">統一超</td>
+  <td class="td-score" style="color:#ff6600">62 <span class="chip-badge">+12籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>223.50</td>
+  <td>1.0x</td>
+  <td class="td-entry">221.26 ~ 227.97</td>
+  <td class="td-stop">216.12</td>
+  <td class="td-profit">257.02</td>
+  <td class="td-reasons">波動收斂(6.7%<8%)+25 | 下降楔形翻紅(MA60上+MACD柱翻正)+25<div class="chip-reasons">法人連買+2 | 外資連買6天+5 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>4942</b></td>
+  <td class="td-name">嘉彰</td>
+  <td class="td-score" style="color:#ff6600">57 <span class="chip-badge">+7籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>37.90</td>
+  <td>0.6x</td>
+  <td class="td-entry">37.52 ~ 38.66</td>
+  <td class="td-stop">37.33</td>
+  <td class="td-profit">43.58</td>
+  <td class="td-reasons">波動收斂(2.8%<8%)+25 | 上升三角形(頂平底升)+25<div class="chip-reasons">法人連買+2 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1734</b></td>
+  <td class="td-name">杏輝</td>
+  <td class="td-score" style="color:#ff6600">57 <span class="chip-badge">+7籌碼</span></td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>31.00</td>
+  <td>0.4x</td>
+  <td class="td-entry">30.69 ~ 31.62</td>
+  <td class="td-stop">30.55</td>
+  <td class="td-profit">35.65</td>
+  <td class="td-reasons">波動收斂(4.7%<8%)+25 | 上升三角形(頂平底升)+25<div class="chip-reasons">法人連買+2 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>2114</b></td>
+  <td class="td-name">鑫永銓</td>
+  <td class="td-score" style="color:#ff6600">50 </td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>88.60</td>
+  <td>0.7x</td>
+  <td class="td-entry">87.71 ~ 90.37</td>
+  <td class="td-stop">87.97</td>
+  <td class="td-profit">101.89</td>
+  <td class="td-reasons">波動收斂(1.7%<8%)+25 | 上升三角形(頂平底升)+25</td>
+</tr>
+<tr>
+  <td class="td-code"><b>2434</b></td>
+  <td class="td-name">統懋</td>
+  <td class="td-score" style="color:#ff6600">50 </td>
+  <td class="td-stars" style="color:#ff6600">★★</td>
+  <td>29.05</td>
+  <td>0.5x</td>
+  <td class="td-entry">28.76 ~ 29.63</td>
+  <td class="td-stop">29.16</td>
+  <td class="td-profit">33.41</td>
+  <td class="td-reasons">波動收斂(3.6%<8%)+25 | 上升三角形(頂平底升)+25</td>
+</tr>
+<tr>
+  <td class="td-code"><b>1229</b></td>
+  <td class="td-name">聯華</td>
+  <td class="td-score" style="color:#ffaa00">43 <span class="chip-badge">+18籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>44.85</td>
+  <td>0.9x</td>
+  <td class="td-entry">44.40 ~ 45.75</td>
+  <td class="td-stop">43.83</td>
+  <td class="td-profit">51.58</td>
+  <td class="td-reasons">波動收斂(5.5%<8%)+25<div class="chip-reasons">法人連買5天+8 | 外資連買5天+5 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1216</b></td>
+  <td class="td-name">統一</td>
+  <td class="td-score" style="color:#ffaa00">38 <span class="chip-badge">+13籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>72.00</td>
+  <td>1.0x</td>
+  <td class="td-entry">71.28 ~ 73.44</td>
+  <td class="td-stop">70.31</td>
+  <td class="td-profit">82.80</td>
+  <td class="td-reasons">波動收斂(4.9%<8%)+25<div class="chip-reasons">法人連買3天+5 | 外資連買3天+3 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1315</b></td>
+  <td class="td-name">達新</td>
+  <td class="td-score" style="color:#ffaa00">38 <span class="chip-badge">+13籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>63.00</td>
+  <td>1.2x</td>
+  <td class="td-entry">62.37 ~ 64.26</td>
+  <td class="td-stop">63.12</td>
+  <td class="td-profit">72.45</td>
+  <td class="td-reasons">波動收斂(7.9%<8%)+25<div class="chip-reasons">法人連買3天+5 | 外資連買3天+3 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1234</b></td>
+  <td class="td-name">黑松</td>
+  <td class="td-score" style="color:#ffaa00">35 <span class="chip-badge">+10籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>36.05</td>
+  <td>1.2x</td>
+  <td class="td-entry">35.69 ~ 36.77</td>
+  <td class="td-stop">35.90</td>
+  <td class="td-profit">41.46</td>
+  <td class="td-reasons">波動收斂(4.1%<8%)+25<div class="chip-reasons">法人連買3天+5 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1323</b></td>
+  <td class="td-name">永裕</td>
+  <td class="td-score" style="color:#ffaa00">33 <span class="chip-badge">+8籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>19.10</td>
+  <td>0.7x</td>
+  <td class="td-entry">18.91 ~ 19.48</td>
+  <td class="td-stop">18.62</td>
+  <td class="td-profit">21.96</td>
+  <td class="td-reasons">波動收斂(7.8%<8%)+25<div class="chip-reasons">法人連買3天+5 | 外資連買3天+3</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1217</b></td>
+  <td class="td-name">愛之味</td>
+  <td class="td-score" style="color:#ffaa00">32 <span class="chip-badge">+7籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>10.30</td>
+  <td>0.7x</td>
+  <td class="td-entry">10.20 ~ 10.51</td>
+  <td class="td-stop">10.15</td>
+  <td class="td-profit">11.84</td>
+  <td class="td-reasons">波動收斂(2.5%<8%)+25<div class="chip-reasons">法人連買+2 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1201</b></td>
+  <td class="td-name">味全</td>
+  <td class="td-score" style="color:#ffaa00">32 <span class="chip-badge">+7籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>13.40</td>
+  <td>0.6x</td>
+  <td class="td-entry">13.27 ~ 13.67</td>
+  <td class="td-stop">13.78</td>
+  <td class="td-profit">15.41</td>
+  <td class="td-reasons">波動收斂(6.8%<8%)+25<div class="chip-reasons">法人連買+2 | 籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1203</b></td>
+  <td class="td-name">味王</td>
+  <td class="td-score" style="color:#ffaa00">30 <span class="chip-badge">+5籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>39.55</td>
+  <td>1.0x</td>
+  <td class="td-entry">39.15 ~ 40.34</td>
+  <td class="td-stop">38.81</td>
+  <td class="td-profit">45.48</td>
+  <td class="td-reasons">波動收斂(7.1%<8%)+25<div class="chip-reasons">籌碼動能加速+5</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1232</b></td>
+  <td class="td-name">大統益</td>
+  <td class="td-score" style="color:#ffaa00">27 <span class="chip-badge">+2籌碼</span></td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>150.00</td>
+  <td>0.8x</td>
+  <td class="td-entry">148.50 ~ 153.00</td>
+  <td class="td-stop">149.04</td>
+  <td class="td-profit">172.50</td>
+  <td class="td-reasons">波動收斂(2.4%<8%)+25<div class="chip-reasons">法人連買+2</div></td>
+</tr>
+<tr>
+  <td class="td-code"><b>1321</b></td>
+  <td class="td-name">大洋</td>
+  <td class="td-score" style="color:#ffaa00">25 </td>
+  <td class="td-stars" style="color:#ffaa00">★</td>
+  <td>34.35</td>
+  <td>0.3x</td>
+  <td class="td-entry">34.01 ~ 35.04</td>
+  <td class="td-stop">33.19</td>
+  <td class="td-profit">39.50</td>
+  <td class="td-reasons">波動收斂(6.3%<8%)+25</td>
+</tr>
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+# 排除私人與資料檔案，只上傳報告網頁
+*.csv
+portfolio_state*.json
+持倉報告*.html
+推波報告_2*.html
+AI推波報告_2*.html
+logs/
